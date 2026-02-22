@@ -45,17 +45,56 @@
     justify-content: center;
 }
 
+// Doctor Strange Mystical Theme
 .free-bots {
     padding: 20px;
-    background: rgb(30 41 59 / 35%); /* semi-transparent dark */
+    position: relative;
+    background: radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.15) 0%, rgba(139, 0, 139, 0.1) 50%, rgba(0, 0, 0, 0.9) 100%);
     border-radius: 18px;
-    border: 1.5px solid rgb(255 255 255 / 18%);
-    box-shadow: 0 8px 32px 0 rgb(31 38 135 / 25%);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 
+        0 0 30px rgba(255, 140, 0, 0.3),
+        0 0 60px rgba(139, 0, 139, 0.2),
+        inset 0 0 50px rgba(255, 140, 0, 0.05);
     backdrop-filter: blur(12px) saturate(160%);
-    backdrop-filter: blur(12px) saturate(160%);
-
-    /* Optional: subtle border gradient */
-    border-image: linear-gradient(135deg, rgb(0 255 255 / 18%), rgb(0 255 128 / 12%), rgb(255 0 255 / 10%)) 1;
+    overflow: hidden;
+    
+    // Animated mystical border
+    &::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            #ff8c00, #ffa500, #ff4500, 
+            #8b008b, #9400d3, #4b0082,
+            #ff8c00);
+        background-size: 400% 400%;
+        border-radius: 18px;
+        z-index: -1;
+        animation: mystical-border 8s ease infinite;
+    }
+    
+    // Floating magical particles
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle, rgba(255, 140, 0, 0.3) 1px, transparent 1px),
+            radial-gradient(circle, rgba(139, 0, 139, 0.3) 1px, transparent 1px);
+        background-size: 50px 50px, 80px 80px;
+        background-position: 0 0, 40px 40px;
+        animation: particles-float 20s linear infinite;
+        opacity: 0.3;
+        pointer-events: none;
+    }
 }
 
 .free-bots__heading {
@@ -63,55 +102,175 @@
     font-weight: bold;
     margin-bottom: 20px;
     text-align: center;
-    color: var(--accent2);
+    color: #ff8c00;
+    text-shadow: 
+        0 0 10px rgba(255, 140, 0, 0.8),
+        0 0 20px rgba(255, 140, 0, 0.5),
+        0 0 30px rgba(139, 0, 139, 0.3);
+    animation: mystical-glow 3s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
 }
 
-/* Removed duplicate selector - content styles moved to first declaration */
-
+// Doctor Strange Portal Card Style
 .free-bot {
-    background: rgb(255 255 255 / 10%);
-    border: 1.5px solid rgb(255 255 255 / 18%);
-    border-radius: 16px;
+    background: radial-gradient(circle at center, rgba(255, 140, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+    border: 2px solid rgba(255, 140, 0, 0.4);
+    border-radius: 50%;
     padding: 18px 15px 15px;
     width: 220px;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    position: relative;
     box-shadow:
-        0 4px 24px 0 rgb(0 255 255 / 10%),
-        0 1.5px 8px 0 rgb(0 0 0 / 10%);
+        0 0 20px rgba(255, 140, 0, 0.4),
+        0 0 40px rgba(139, 0, 139, 0.3),
+        inset 0 0 30px rgba(255, 140, 0, 0.1);
     backdrop-filter: blur(8px) saturate(140%);
-    backdrop-filter: blur(8px) saturate(140%);
-    transition:
-        transform 0.3s cubic-bezier(0.4, 2, 0.6, 1),
-        box-shadow 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    
+    // Magical circle rings
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 180%;
+        height: 180%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            rgba(255, 140, 0, 0.3) 90deg,
+            transparent 180deg,
+            rgba(139, 0, 139, 0.3) 270deg,
+            transparent 360deg
+        );
+        border-radius: 50%;
+        animation: portal-spin 8s linear infinite;
+        opacity: 0.6;
+        pointer-events: none;
+    }
+    
+    // Inner mystical glow
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60%;
+        height: 60%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(255, 140, 0, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: pulse-glow 2s ease-in-out infinite;
+        pointer-events: none;
+    }
 
     &:hover {
-        transform: translateY(-7px) scale(1.03);
+        transform: scale(1.1) rotate(5deg);
+        border-color: rgba(255, 140, 0, 0.8);
         box-shadow:
-            0 8px 32px 0 rgb(0 255 255 / 18%),
-            0 2px 12px 0 rgb(0 0 0 / 13%);
-        border-color: rgb(0 255 255 / 25%);
+            0 0 40px rgba(255, 140, 0, 0.6),
+            0 0 80px rgba(139, 0, 139, 0.5),
+            inset 0 0 50px rgba(255, 140, 0, 0.2);
+        
+        &::before {
+            animation: portal-spin 4s linear infinite;
+            opacity: 1;
+        }
+        
+        &::after {
+            animation: pulse-glow 1s ease-in-out infinite;
+        }
     }
 }
 
 .free-bot__image {
-    width: 100%;
+    width: 80%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
 }
 
 .free-bot__details {
     margin-top: 10px;
+    position: relative;
+    z-index: 2;
 }
 
 .free-bot__title {
     font-size: 14px;
     font-weight: bold;
-    color: var(--text-primary);
+    color: #ff8c00;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.8);
 }
 
 .free-bot__description {
-    font-size: 14px;
-    color: var(--text-secondary);
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 5px rgba(139, 0, 139, 0.5);
+}
+
+// Mystical Animations
+@keyframes mystical-border {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes particles-float {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+@keyframes mystical-glow {
+    0%, 100% {
+        text-shadow: 
+            0 0 10px rgba(255, 140, 0, 0.8),
+            0 0 20px rgba(255, 140, 0, 0.5),
+            0 0 30px rgba(139, 0, 139, 0.3);
+    }
+    50% {
+        text-shadow: 
+            0 0 20px rgba(255, 140, 0, 1),
+            0 0 40px rgba(255, 140, 0, 0.8),
+            0 0 60px rgba(139, 0, 139, 0.6);
+    }
+}
+
+@keyframes portal-spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
 }
 
 .main {
